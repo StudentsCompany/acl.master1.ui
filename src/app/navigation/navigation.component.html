@@ -1,0 +1,84 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a 
+        mat-list-item 
+        href="#" 
+        routerLink="games">
+        Games
+      </a>
+      <a 
+        mat-list-item 
+        href="#"
+        routerLink="control-center">
+        Control center</a>
+      <a mat-list-item href="#">
+        <mat-icon>dark_mode</mat-icon>
+        Light/Dark
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>ACL Games</span>
+      <span class="spacer"></span>
+      <div *ngIf="isLoggedIn then printLogin; else printLogout"></div>
+      <ng-template #printLogin>
+        <a 
+        [matMenuTriggerFor]="menu1"
+        id="profile-avatar"
+        matTooltip="username">
+        <img 
+        class="rounded-circle"
+        src="https://png.pngtree.com/png-clipart/20230102/original/pngtree-fashion-boy-avatar-png-image_8855187.png" 
+        alt="profile-avatar" />
+        </a>
+        <mat-menu #menu1="matMenu">
+          <button
+            mat-menu-item>
+            Details
+          </button>
+          <button
+            mat-menu-item>
+            Logout
+          </button>
+        </mat-menu>
+      </ng-template>
+      <ng-template #printLogout>
+        <button 
+          mat-fab 
+          [matMenuTriggerFor]="menu"
+          color="primary">
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button 
+            mat-menu-item
+            routerLink="registration"
+            (click)="onAuthMe('register')">
+            Register</button>
+          <button 
+            mat-menu-item
+            routerLink="registration"
+            (click)="onAuthMe('login')">
+            Login</button>
+        </mat-menu>
+      </ng-template>
+      
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

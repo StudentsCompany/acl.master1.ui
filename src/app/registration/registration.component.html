@@ -1,0 +1,121 @@
+<br><br>
+<div class="container">
+    <div class="row text-center">
+        <h1>Welcome to registration page.</h1>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-6 text-center">
+           <img src="https://pathwayport.com/saasland/images/login@4x.png" alt="">  
+        </div>
+        
+        <div class="col-lg-6">
+            <br>
+            <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+                <div class="row text-center">
+                    <div *ngIf="mode==='login'; then printLogin else printRegister"></div>
+                    <ng-template #printRegister>
+                        <div class="my-register-form">
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input 
+                                matInput
+                                ngModel
+                                name="username"
+                                required>
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input 
+                                matInput
+                                ngModel
+                                name="registrationEmail"
+                                required
+                                email>
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input 
+                                matInput 
+                                [type]="hidePassword ? 'password' : 'text'"
+                                (keyup)="onPasswordKeyUp()"
+                                ngModel
+                                name="registrationPassword"
+                                required>
+                                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Confirm your password</mat-label>
+                                <input 
+                                matInput 
+                                [type]="hideConfirmPassword ? 'password' : 'text'"
+                                (keyup)="onPasswordKeyUp()"
+                                ngModel
+                                name="confirmPassword"
+                                required>
+                                <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+                                <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <span *ngIf="printPasswordErrorMessage">Your passwords don't match </span>
+                    </ng-template>
+
+                    <ng-template #printLogin>
+                        
+                        <div class="my-register-form">
+                            <br><br><br><br>
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input 
+                                matInput
+                                ngModel
+                                name="loginUsername"
+                                required>
+                            </mat-form-field>
+            
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input 
+                                matInput 
+                                [type]="hidePassword ? 'password' : 'text'"
+                                ngModel
+                                name="loginPassword"
+                                required>
+                                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                    </ng-template>
+                    
+                </div>
+                <div class="row text-center">
+                    <p>
+                        You forgot you password ? 
+                        <a>click here</a> to reset it | Or
+                        <a *ngIf="mode==='register'" (click)="onAuthMe('login')"> login here</a>
+                        <a *ngIf="mode==='login'" (click)="onAuthMe('register')"> Register here</a>
+                    </p>
+                    
+                </div>
+                <div class="row text-center">
+                    <button 
+                        mat-raised-button 
+                        color="primary"
+                        [disabled]="! myForm.valid"
+                        >
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

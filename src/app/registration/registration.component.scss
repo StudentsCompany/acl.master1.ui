@@ -1,0 +1,28 @@
+img, mat-form-field{
+    width: 390px;
+}
+img{
+    height: 300px;
+}
+button{
+    width: 100px;
+    margin: 0 auto;
+}
+
+h1{
+    font-weight: bold;
+}
+
+p a{
+    //color: #7b1fa2;
+    text-decoration: underline;
+}
+
+p a, p a:hover{
+    color: #7b1fa2;
+    cursor: pointer;
+}
+
+span{
+    color: red;
+}
