@@ -1,16 +1,33 @@
-<!-- Ecran de Classement -->
-<button id="retourMenu" (click)="navigateTo('../game1-home')">Retour Au Menu</button>
-<table>
-  <thead>
-  <tr>
-    <th>Classement</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>username</td>
-    <td>points</td>
-  </tr>
-  </thead>
-</table>
+<div id="ecranClassementDiv">
 
-<button mat-raised-button>test</button>
+  <div id="headerClassement">
+    <button mat-raised-button color="warn" id="retourMenu" (click)="navigateTo('../game1-home')">Retour Au Menu</button>
+    <label id="titreClassement">Classement des Joueurs</label>
+  </div>
+  <table id="tableClassement" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Username Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+
+    <!-- Score Column -->
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef> Score </th>
+      <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

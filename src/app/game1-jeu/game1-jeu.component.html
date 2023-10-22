@@ -1,21 +1,48 @@
 <!-- Ecran de jeu -->
 <div id="ecranJeuDiv">
-  <button id="boutonQuitterJeu" (click)="navigateTo('../game1-home')">Quitter La Partie</button>
-  <label id="score">21</label>
-  <label id="numeroTour">3</label>
+
+  <mat-grid-list id="headerJeu" cols="3" rowHeight="50px">
+    <mat-grid-tile>
+      <button id="boutonQuitterJeu" (click)="navigateTo('../game1-home')" mat-raised-button color="warn">Quitter La Partie</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <label id="score" >Score : {{ score }}</label>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <label id="tour">Tour {{ tour }}</label>
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <div id="cardsDiv">
-    <img id="pile" alt="pile" src="pile">
-    <img id="card1" alt="card1" src="card1">
-    <img id="card2" alt="card2" src="card2">
-    <img id="card3" alt="card3" src="card3">
-    <img id="card4" alt="card4" src="card4">
-    <img id="card5" alt="card5" src="card5">
-    <img id="card6" alt="card6" src="card6">
-    <img id="card7" alt="card7" src="card7">
-    <img id="card8" alt="card8" src="card8">
-    <img id="card9" alt="card9" src="card9">
-    <img id="card10" alt="card10" src="card10">
+    <div id="pileDiv">
+      <img id="pile" alt="pile" src="assets/Files/cards/dos.jfif">
+    </div>
+    <div id="ligneCartes1">
+      <div id="paireCartes1">
+        <img id="card1" alt="card1" src="assets/Files/cards/As.gif">
+        <img id="card2" alt="card2" src="assets/Files/cards/Kc.gif">
+      </div>
+      <div id="paireCartes2">
+        <img id="card3" alt="card3" src="assets/Files/cards/8d.gif">
+        <img id="card4" alt="card4" src="assets/Files/cards/8h.gif">
+      </div>
+    </div>
+    <div id="ligneCartes2">
+      <div id="paireCartes3">
+        <img id="card5" alt="card5" src="assets/Files/cards/10h.gif">
+        <img id="card6" alt="card6" src="assets/Files/cards/Ah.gif">
+      </div>
+      <div id="paireCartes4">
+        <img id="card7" alt="card7" src="assets/Files/cards/Qc.gif">
+        <img id="card8" alt="card8" src="assets/Files/cards/Jd.gif">
+      </div>
+      <div id="paireCartes5">
+        <img id="card9" alt="card9" src="assets/Files/cards/7s.gif">
+        <img id="card10" alt="card10" src="assets/Files/cards/9c.gif">
+      </div>
+    </div>
+  <div id="footer">
+    <button id="boutonTourSuivant" mat-raised-button color="primary">Tour suivant</button>
   </div>
-  <button id="boutonTourSuivant">Tour suivant</button>
 </div>
 

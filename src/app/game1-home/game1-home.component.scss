@@ -1,1 +1,26 @@
+#jeuDiv {
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  padding:10px;
+}
+#jeuDiv * {
+  width:fit-content;
+  height: fit-content;
+  margin: 10px;
+  padding:15px;
+  border: thin solid white;
+  border-radius: 10px;
+  font-size: 20px;
+  color: black;
+}
 
+#jeuDiv {
+  background: url("../../assets/Files/cards/fond.png") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    height:100%;
+}

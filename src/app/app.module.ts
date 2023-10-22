@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatTabsModule } from '@angular/material/tabs'
+import {MatTableModule} from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -63,7 +65,9 @@ import { Game1HomeComponent } from './game1-home/game1-home.component';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatTableModule,
     BrowserAnimationsModule,
+    MatTabsModule,
     StoreModule.forRoot(
       { user : aclUserReducer },
       {

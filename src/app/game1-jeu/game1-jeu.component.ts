@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game1-jeu.component.scss']
 })
 export class Game1JeuComponent {
+  score:number = 21;
+  tour:number = 3;
+
   constructor(private uiService : UIService, private route: ActivatedRoute) {}
 
   navigateTo(path:string) : void {

@@ -1,3 +1,64 @@
 #ecranJeuDiv {
-    text-align:center;
+  text-align:center;
+  margin : 20px;
+  padding : 30px;
+  background-color:rgb(37, 143, 53);
+  border: 5px solid white;
+  border-radius:25px;
+
+}
+
+#ecranJeuDiv > *{
+  padding-bottom:15px;
+}
+
+#headerJeu{
+  display: flex;
+  align-content: center;
+  padding-bottom:10px;
+  font-size: 25px;
+}
+
+#headerJeu label {
+  width: 130px;
+}
+
+#score {
+  border: 3px solid rgb(123, 31, 162);
+  border-radius : 10px;
+  padding: 5px;
+  width: fit-content;
+}
+
+#tour {
+  border: 4px ridge black;
+  padding: 5px;
+}
+
+#pile {
+  transform: rotate(90deg);
+}
+
+#pileDiv {
+  text-align: center;
+}
+
+#cardsDiv img {
+  height: 126px;
+  width: 101px;
+}
+
+#cardsDiv {
+  padding-top: 25px;
+}
+
+#scoreDiv {
+  text-align: center;
+}
+
+#ligneCartes1, #ligneCartes2 {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  margin: 10px;
 }

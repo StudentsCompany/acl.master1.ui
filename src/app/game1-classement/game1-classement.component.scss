@@ -1,0 +1,46 @@
+#ecranClassementDiv {
+  background: url("../../assets/Files/cards/fond.png") no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height:100%;
+  padding: 10px;
+}
+
+#titreClassement {
+  border: 3px solid rgb(123, 31, 162);
+  border-radius : 10px;
+  padding: 5px;
+  width: fit-content;
+  font-size: 200%;
+}
+
+#tableClassement {
+  margin: auto;
+  text-align: center;
+  min-width: 25%;
+  max-width: 50%;
+}
+
+.mat-column-position {
+  width: 5%;
+}
+
+.mat-column-score {
+  width: 5%;
+}
+
+th, td {
+  text-align: center;
+}
+
+#headerClassement {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#retourMenu {
+  position: relative;
+  right: 20%;
+}
