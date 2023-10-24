@@ -19,30 +19,31 @@
     </div>
     <div id="ligneCartes1">
       <div id="paireCartes1">
-        <img id="card1" alt="card1" src="assets/Files/cards/As.gif">
-        <img id="card2" alt="card2" src="assets/Files/cards/Kc.gif">
+        <img #card1 alt="card1" hidden>
+        <img #card2 alt="card2" hidden>
       </div>
       <div id="paireCartes2">
-        <img id="card3" alt="card3" src="assets/Files/cards/8d.gif">
-        <img id="card4" alt="card4" src="assets/Files/cards/8h.gif">
+        <img #card3 alt="card3" hidden>
+        <img #card4 alt="card4" hidden>
       </div>
     </div>
     <div id="ligneCartes2">
       <div id="paireCartes3">
-        <img id="card5" alt="card5" src="assets/Files/cards/10h.gif">
-        <img id="card6" alt="card6" src="assets/Files/cards/Ah.gif">
+        <img #card5 alt="card5" hidden>
+        <img #card6 alt="card6" hidden>
       </div>
       <div id="paireCartes4">
-        <img id="card7" alt="card7" src="assets/Files/cards/Qc.gif">
-        <img id="card8" alt="card8" src="assets/Files/cards/Jd.gif">
+        <img #card7 alt="card7" hidden>
+        <img #card8 alt="card8" hidden>
       </div>
       <div id="paireCartes5">
-        <img id="card9" alt="card9" src="assets/Files/cards/7s.gif">
-        <img id="card10" alt="card10" src="assets/Files/cards/9c.gif">
+        <img #card9 alt="card9" hidden>
+        <img #card10 alt="card10" hidden>
       </div>
     </div>
-  <div id="footer">
-    <button id="boutonTourSuivant" mat-raised-button color="primary">Tour suivant</button>
+    <div id="footer">
+      <button id="boutonTourSuivant" mat-raised-button color="primary" (click)="drawCards()">Tour suivant</button>
+    </div>
   </div>
 </div>
 
