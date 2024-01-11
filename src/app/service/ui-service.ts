@@ -10,10 +10,15 @@ export class UIService {
 
     constructor(private router:Router) {}
 
+    nextGameId : number = 0;
+
     auth_mode = new BehaviorSubject<String>("register");
     // BehaviorSubject = EventEmitter
 
     loggedIn = new BehaviorSubject<boolean>(false);
+
+    token : string | undefined = "";
+
 
     dipacheAuthMode(mode : String){
         this.auth_mode.next(mode);

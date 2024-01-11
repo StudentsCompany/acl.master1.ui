@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AclUserDTO } from "src/app/model/acl.user.model.dto";
 import { environment } from "src/environments/environment";
+import {TokenDTO} from "src/app/model/token.model";
 
 @Injectable({
     providedIn : 'root'
@@ -26,13 +27,13 @@ export class AclUserService {
     }
 
     getAclUserByUsername(username : string){ // TODO should ne created in the backend
-        return this.httpClient.get<AclUserDTO>(
+        return this.httpClient.get<TokenDTO>(
             `${environment.urls.apiRoot}${this.ROOT}/${username.trim()}`
         );
     }
 
     getAll(){
-        return this.httpClient.get<AclUserDTO>(
+        return this.httpClient.get<AclUserDTO[]> (
             `${environment.urls.apiRoot}${this.ROOT}`
         );
     }
@@ -41,14 +42,14 @@ export class AclUserService {
         console.log("Post method")
         console.log(aclUserDTO)
         return this.httpClient.post<AclUserDTO>(
-            `${environment.urls.apiRoot}${this.REGISTER}`, 
+            `${environment.urls.apiRoot}${this.REGISTER}`,
             aclUserDTO
         )
 
-    }   
+    }
 
     getToken(aclUserDTO : AclUserDTO ){ // Post Method
-        return this.httpClient.post<string>(
+        return this.httpClient.post<TokenDTO>(
             `${environment.urls.apiRoot}${this.GET_TOKEN}`,
             aclUserDTO
         );

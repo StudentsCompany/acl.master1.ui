@@ -17,7 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
 import {FormsModule} from '@angular/forms'
 import { StoreModule } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {MatListModule} from '@angular/material/list';
 import { NotAllowedComponent } from './not-allowed/not-allowed.component';
@@ -34,6 +34,7 @@ import { UserEffects } from './store/effect/acl.user.effect';
 import { Game1JeuComponent } from './game1-jeu/game1-jeu.component';
 import { Game1ClassementComponent } from './game1-classement/game1-classement.component';
 import { Game1HomeComponent } from './game1-home/game1-home.component';
+import { LoggingInterceptor } from './logging.interceptor';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,11 @@ import { Game1HomeComponent } from './game1-home/game1-home.component';
     ),
     EffectsModule.forRoot([UserEffects])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

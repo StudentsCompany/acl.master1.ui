@@ -1,13 +1,15 @@
 import { createAction, props } from "@ngrx/store";
 import { AclUserDTO } from "src/app/model/acl.user.model.dto";
+import { TokenDTO } from "src/app/model/token.model";
+import { CardDTO } from "src/app/model/card/card.model.dto";
 
 
 export const register = createAction(
-    '[AclUser] Register', 
+    '[AclUser] Register',
     props<{aclUserDTO : AclUserDTO}>());
 
 export const login = createAction(
-    '[AclUser] Log-in', 
+    '[AclUser] Log-in',
     props<{aclUserDTO : AclUserDTO}>());
 
 export const loggedIn = createAction(
@@ -25,5 +27,10 @@ export const loadAclUserSuccess = createAction(
 
 export const loadAclUserTokenSuccess = createAction(
     '[AclUser] load ACL User token',
-    props<{token : string}>()
+    props<{token : TokenDTO}>()
+)
+
+export const loadCardDTOsSuccess = createAction(
+    '[CardDTO[]] load CardDTOs',
+    props<{cardDTOs : CardDTO[]}>()
 )

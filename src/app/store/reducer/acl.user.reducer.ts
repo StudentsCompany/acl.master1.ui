@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { userInitialState } from "../state/acl.user.state";
-import { loadAclUserSuccess, loadAclUserTokenSuccess } from "../action/acl.user.action";
+import { loadAclUserSuccess, loadAclUserTokenSuccess, loadCardDTOsSuccess } from "../action/acl.user.action";
 
 
 export const aclUserReducer = createReducer(
@@ -8,16 +8,23 @@ export const aclUserReducer = createReducer(
     // on(...) is a listner to some action
     on(loadAclUserTokenSuccess, (state, {token}) => {
         return {
-            ...state, 
-            token : token 
+            ...state,
+            token : token
         }
     }),
 
     on(loadAclUserSuccess, (state, {aclUserDTO}) => {
         return {
-            ...state, 
+            ...state,
             aclUserDTO : aclUserDTO
         }
-    })
+    }),
+    on(loadCardDTOsSuccess, (state, {cardDTOs}) => {
+            return {
+                ...state,
+                cardDTOs : cardDTOs
+            }
+        }),
 
 )
+

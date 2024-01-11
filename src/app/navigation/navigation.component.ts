@@ -39,5 +39,20 @@ export class NavigationComponent implements OnInit {
     this.uiService.dipacheAuthMode(auth_mode); // next (BehaviorSubject) = emit (EventEmitter)
   }
 
+  switchMode() {
+    let modeIcon = document.getElementById("modeIcon");
+    let mode = document.getElementById("home");
+    if(modeIcon != null && mode != null) {
+      if(modeIcon.innerText == "dark_mode") {
+        modeIcon.innerText = "brightness_5";
+        mode.classList.remove("darkMode");
+      }
+      else {
+        mode.classList.add("darkMode");
+        modeIcon.innerText = "dark_mode";
+      }
+    }
+  }
+
 
 }

@@ -13,3 +13,8 @@ export const selectAclUserToken = createSelector(
     selectFeatureAclUser,
     (aclUserState) => aclUserState.token
 );
+
+export const selectCards = createSelector(
+    selectFeatureAclUser,
+    (aclUserState) => aclUserState.cardDTOs
+);

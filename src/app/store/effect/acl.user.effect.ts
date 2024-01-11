@@ -41,7 +41,10 @@ export class UserEffects{
                     // It just contains the username and the password
                     this.aclUserService.getToken(data.aclUserDTO).pipe(
                         map((result) => {
+                            console.log("token recu : " + result.token);
+                            this.uiService.token = result.token;
                             loadAclUserTokenSuccess({token : result}); // Will store the result
+                            console.log("STORE : loadAclUserTokenSuccess");
                             // For Romain
                             // After we stored the result, we should dispache another action
                                 //and load the rest of the user information about the user (his personal info and about the game).
@@ -56,9 +59,10 @@ export class UserEffects{
                         map((result) => {
                             // the result or aclUserDTO here complete
                             // we can store it.
-                            loadAclUserSuccess({aclUserDTO : result}); // Will store the result
+                            //loadAclUserSuccess({aclUserDTO : result}); // Will store the result
+                            loadAclUserTokenSuccess({token : result})
                         })
-                    ).subscribe();
+                    );
                 })
             )
         },

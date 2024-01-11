@@ -6,7 +6,7 @@
       <button id="boutonQuitterJeu" (click)="navigateTo('../game1-home')" mat-raised-button color="warn">Quitter La Partie</button>
     </mat-grid-tile>
     <mat-grid-tile>
-      <label id="score" >Score : {{ score }}</label>
+      <label id="score" >Score : {{ game.score }}</label>
     </mat-grid-tile>
     <mat-grid-tile>
       <label id="tour">Tour {{ tour }}</label>
@@ -17,32 +17,14 @@
     <div id="pileDiv">
       <img id="pile" alt="pile" src="assets/Files/cards/dos.jfif">
     </div>
-    <div id="ligneCartes1">
-      <div id="paireCartes1">
-        <img #card1 alt="card1" hidden>
-        <img #card2 alt="card2" hidden>
-      </div>
-      <div id="paireCartes2">
-        <img #card3 alt="card3" hidden>
-        <img #card4 alt="card4" hidden>
+    <div id="ligneCartes{{i}}" *ngFor="let i of [0,1]">
+      <div id="paireCartes{{j}}" *ngFor="let pair of pairs[i]; index as j">
+        <img id="card{{k}}" *ngFor="let card of pairs[i][j]; index as k; first as isFirst" alt=card{{k}} [src]="card.path">
       </div>
     </div>
-    <div id="ligneCartes2">
-      <div id="paireCartes3">
-        <img #card5 alt="card5" hidden>
-        <img #card6 alt="card6" hidden>
-      </div>
-      <div id="paireCartes4">
-        <img #card7 alt="card7" hidden>
-        <img #card8 alt="card8" hidden>
-      </div>
-      <div id="paireCartes5">
-        <img #card9 alt="card9" hidden>
-        <img #card10 alt="card10" hidden>
-      </div>
-    </div>
+
     <div id="footer">
-      <button id="boutonTourSuivant" mat-raised-button color="primary" (click)="drawCards()">Tour suivant</button>
+      <button id="boutonTourSuivant" mat-raised-button color="primary" (click)="drawCards(2)">Tour suivant</button>
     </div>
   </div>
 </div>
