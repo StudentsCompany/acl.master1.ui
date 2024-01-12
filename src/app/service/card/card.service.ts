@@ -83,11 +83,11 @@ export class CardService {
 
 
   /* postCard(cardDTO : CardDTO){ //TODO useless?
-      console.log("Post method")
-      console.log(cardDTO)
-      return this.httpClient.post<CardDTO>(
-          `${environment.urls.apiRoot}${this.REGISTER}`,
-          cardDTO
-      )
+    console.log("Post method")
+    console.log(cardDTO)
+    return this.httpClient.post<CardDTO>(
+      `${environment.urls.apiRoot}${this.REGISTER}`,
+      cardDTO
+    )
   } */
 }

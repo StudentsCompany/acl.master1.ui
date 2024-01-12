@@ -24,7 +24,17 @@
     </div>
 
     <div id="footer">
-      <button id="boutonTourSuivant" mat-raised-button color="primary" (click)="drawCards(2)">Tour suivant</button>
+      <button id="boutonTourSuivant" mat-raised-button color="primary" (click)="drawCards(2)" *ngIf="tour != 5">Tour suivant</button>
+
+      <div id="endingDiv" *ngIf="tour == 5">
+        <div id="endingMessageDiv">
+          <label id="partieTerminee">Partie terminée !</label>
+        </div>
+        <div id="endingButtonsDiv">
+          <button id="boutonRejouer" mat-raised-button color="primary" (click)="reloadPage()">Rejouer</button>
+          <button id="boutonQuitter" mat-raised-button color="primary" (click)="navigateTo('../game1-home')">Quitter</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

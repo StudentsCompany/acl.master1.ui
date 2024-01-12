@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UIService } from '../service/ui-service';
 import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../service/card/card.service';
+import { GameService } from '../service/game.service';
 import { CardDTO } from '../model/card/card.model.dto';
 import { GameDTO } from '../model/game.model.dto';
 import { map } from 'rxjs/operators';
@@ -27,7 +28,7 @@ export class Game1JeuComponent implements OnInit {
 
   game : GameDTO;
 
-  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, private store : Store) {
+  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, public gameService : GameService, private store : Store) {
     this.game = new GameDTO();
     this.game.gameId = uiService.nextGameId;
     uiService.nextGameId++;
@@ -107,6 +108,10 @@ export class Game1JeuComponent implements OnInit {
     this.uiService.navigateTo(path, this.route);
   }
 
+  reloadPage(){
+      window.location.reload()
+  }
+
   drawCards(amount : number) : void {
     if(this.drawnCardsCounter < 10) {
       let lineIndex : number = 0;
@@ -139,5 +144,6 @@ export class Game1JeuComponent implements OnInit {
 
       this.drawnCardsCounter += amount;
     }
+    this.gameService.postGame(this.game);
   }
 }

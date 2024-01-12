@@ -35,6 +35,7 @@ import { Game1JeuComponent } from './game1-jeu/game1-jeu.component';
 import { Game1ClassementComponent } from './game1-classement/game1-classement.component';
 import { Game1HomeComponent } from './game1-home/game1-home.component';
 import { LoggingInterceptor } from './logging.interceptor';
+import { Game1EndComponent } from './game1-end/game1-end.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { LoggingInterceptor } from './logging.interceptor';
     RegistrationComponent,
     Game1JeuComponent,
     Game1ClassementComponent,
-    Game1HomeComponent
+    Game1HomeComponent,
+    Game1EndComponent
   ],
   imports: [
     BrowserModule,
