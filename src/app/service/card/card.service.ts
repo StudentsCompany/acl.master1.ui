@@ -11,7 +11,7 @@ import { environment } from "src/environments/environment";
 
 export class CardService {
 
-  private ROOT = 'cards/card';
+  private ROOT = 'game1/card';
 
   private REGISTER = this.ROOT + '/register'
 

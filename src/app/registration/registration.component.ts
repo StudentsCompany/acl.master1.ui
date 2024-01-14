@@ -18,6 +18,7 @@ export class RegistrationComponent implements OnInit{
   hidePassword : boolean = true;
   hideConfirmPassword : boolean = true;
   printPasswordErrorMessage : boolean = false;
+  isLoggedIn !: boolean;
   @ViewChild('myForm') myForm !: NgForm;
 
   constructor(
@@ -38,6 +39,12 @@ export class RegistrationComponent implements OnInit{
         }
       )
     })
+
+    /* this.uiService.loggedIn.pipe(
+      map((res) => {
+         this.isLoggedIn = res;
+      })
+    ).subscribe() */
 
   }
 
@@ -74,7 +81,7 @@ export class RegistrationComponent implements OnInit{
         console.log(user)
 
         this.store.dispatch(register({aclUserDTO : user}));
-        console.log("I dispach")
+        console.log("I dispatch")
         // For Romain
         // You do an http request to check if the email is unique
         // then you store the datas (stored with NgRx) => create an action
@@ -87,9 +94,15 @@ export class RegistrationComponent implements OnInit{
 
       this.store.dispatch(login({aclUserDTO : user}));
 
-      // For Romain
-      // You do an http request to get a Token (the test of authenticity is done in the backend)
-      // then you get the user datas and store then (stored with NgRx) => create an action
+      //     this.uiService.navigateTo("../games", this.route)
+
+     /*  setTimeout(function(){
+          console.log("waited for: " + i + " seconds");
+          repeat();
+        }, 1000);
+
+      if(this.uiService.token != undefined)
+ */
 
     }
   }

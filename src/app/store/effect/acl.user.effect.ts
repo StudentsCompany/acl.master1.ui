@@ -5,6 +5,7 @@ import { loadAclUserSuccess, loadAclUserTokenSuccess, login, register } from "..
 import { EMPTY, catchError, map, tap } from "rxjs";
 import { Store } from "@ngrx/store";
 import { UIService } from "src/app/service/ui-service";
+import { ActivatedRoute } from '@angular/router'
 
 @Injectable()
 export class UserEffects{
@@ -13,7 +14,8 @@ export class UserEffects{
         private readonly action$ : Actions,
         private readonly store : Store,
         private readonly aclUserService : AclUserService,
-        private uiService : UIService
+        private uiService : UIService,
+        private route : ActivatedRoute
     ){
 
     }
@@ -43,6 +45,8 @@ export class UserEffects{
                         map((result) => {
                             console.log("token recu : " + result.token);
                             this.uiService.token = result.token;
+                            this.uiService.loggedIn.next(true);
+                            this.uiService.navigateTo("../home/games", this.route)
                             loadAclUserTokenSuccess({token : result}); // Will store the result
                             console.log("STORE : loadAclUserTokenSuccess");
                             // For Romain

@@ -7,7 +7,14 @@ export class GameDTO {
 
   score !: number;
 
-  state !: string;
+  state !: GameState;
 
   pile : CardDTO[] = [];
+}
+
+export enum GameState {
+
+	PROGRESS = "PROGRESS",
+	FINISHED = "FINISHED"
+
 }

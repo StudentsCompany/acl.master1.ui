@@ -11,6 +11,7 @@ import { Game1Component } from './game1/game1.component';
 import { GamesComponent } from './games/games.component';
 import { ControlCenterComponent } from './control-center/control-center.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path : '', redirectTo :'/home', pathMatch :'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
 
   { path : 'home', component : HomeComponent, title : 'home', children : [
     { path : 'games', component : GamesComponent, title : 'games' },
-    { path : 'game1', component : Game1Component, title : 'game1', children : [
+    { path : 'game1', component : Game1Component, title : 'game1', canActivate: [AuthGuard], children : [
       { path : 'game1-home', component : Game1HomeComponent, title : 'home' },
       { path : 'game1-jeu', component : Game1JeuComponent, title : 'jeu' },
       { path : 'game1-classement', component : Game1ClassementComponent, title : 'classement' },

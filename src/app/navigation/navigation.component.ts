@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UIService } from '../service/ui-service';
 import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-navigation',
@@ -15,7 +17,8 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private uiService : UIService,
-    private readonly store : Store){
+    private readonly store : Store,
+    private route : ActivatedRoute){
 
   }
 
@@ -52,6 +55,13 @@ export class NavigationComponent implements OnInit {
         modeIcon.innerText = "dark_mode";
       }
     }
+  }
+
+  logout(){
+    this.uiService.token = undefined;
+    this.uiService.loggedIn.next(false);
+    this.isLoggedIn = false;
+    this.uiService.navigateTo("./registration", this.route);
   }
 
 

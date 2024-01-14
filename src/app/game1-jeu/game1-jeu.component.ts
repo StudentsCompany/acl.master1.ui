@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CardService } from '../service/card/card.service';
 import { GameService } from '../service/game.service';
 import { CardDTO } from '../model/card/card.model.dto';
-import { GameDTO } from '../model/game.model.dto';
+import { GameDTO, GameState } from '../model/game.model.dto';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { loadAclUserSuccess, loadAclUserTokenSuccess, loadCardDTOsSuccess } from '../store/action/acl.user.action';
@@ -17,7 +17,7 @@ import { selectCards } from '../store/selector/acl.user.selector';
   styleUrls: ['./game1-jeu.component.scss']
 })
 export class Game1JeuComponent implements OnInit {
-  score:number = 21;
+  //score ?:number = 21;
   tour:number = 0;
   cards!: CardDTO[];
   cardtttt$ : Observable<CardDTO[] | null> = this.store.select(selectCards);
@@ -26,19 +26,23 @@ export class Game1JeuComponent implements OnInit {
 
   pairs: CardDTO[][][] = []; // pairs[ligne][paire][carte]
 
-  game : GameDTO;
+  game !: GameDTO;
 
-  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, public gameService : GameService, private store : Store) {
-    this.game = new GameDTO();
-    this.game.gameId = uiService.nextGameId;
-    uiService.nextGameId++;
-    this.game.playerId = 1; //TODO get player id
-    this.game.score = 0;
-    this.game.state = "PENDING";
-  }
+  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, public gameService : GameService, private store : Store) {}
 
   ngOnInit(): void {
+    console.log("init");
+    //this.score = 0;
+    this.tour = 0;
+    this.drawnCardsCounter = 0;
+    this.pairs = []
 
+    this.game = new GameDTO();
+    this.game.gameId = undefined;
+    this.uiService.nextGameId++;
+    this.game.playerId = 1; //TODO get player id
+    this.game.score = 0;
+    this.game.state = GameState.PROGRESS;
 
       /* this.cardtttt$.subscribe((result) => {
         console.log("--------------------------", result);
@@ -108,8 +112,9 @@ export class Game1JeuComponent implements OnInit {
     this.uiService.navigateTo(path, this.route);
   }
 
+
   reloadPage(){
-      window.location.reload()
+      this.ngOnInit();
   }
 
   drawCards(amount : number) : void {
@@ -144,6 +149,9 @@ export class Game1JeuComponent implements OnInit {
 
       this.drawnCardsCounter += amount;
     }
-    this.gameService.postGame(this.game);
+    this.gameService.postGame(this.game).pipe(
+      map((res) => {
+        this.game.gameId = res.gameId;
+      })).subscribe();
   }
 }

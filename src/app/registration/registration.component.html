@@ -5,11 +5,11 @@
     </div>
 
     <div class="row">
-        
+
         <div class="col-lg-6 text-center">
-           <img src="https://pathwayport.com/saasland/images/login@4x.png" alt="">  
+           <img src="https://pathwayport.com/saasland/images/login@4x.png" alt="">
         </div>
-        
+
         <div class="col-lg-6">
             <br>
             <form (ngSubmit)="onSubmit()" #myForm="ngForm">
@@ -19,27 +19,27 @@
                         <div class="my-register-form">
                             <mat-form-field>
                                 <mat-label>Username</mat-label>
-                                <input 
+                                <input
                                 matInput
                                 ngModel
                                 name="username"
                                 required>
                             </mat-form-field>
-            
+
                             <mat-form-field>
                                 <mat-label>Email</mat-label>
-                                <input 
+                                <input
                                 matInput
                                 ngModel
                                 name="registrationEmail"
                                 required
                                 email>
                             </mat-form-field>
-            
+
                             <mat-form-field>
                                 <mat-label>Password</mat-label>
-                                <input 
-                                matInput 
+                                <input
+                                matInput
                                 [type]="hidePassword ? 'password' : 'text'"
                                 (keyup)="onPasswordKeyUp()"
                                 ngModel
@@ -49,11 +49,11 @@
                                 <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>
                             </mat-form-field>
-            
+
                             <mat-form-field>
                                 <mat-label>Confirm your password</mat-label>
-                                <input 
-                                matInput 
+                                <input
+                                matInput
                                 [type]="hideConfirmPassword ? 'password' : 'text'"
                                 (keyup)="onPasswordKeyUp()"
                                 ngModel
@@ -68,22 +68,22 @@
                     </ng-template>
 
                     <ng-template #printLogin>
-                        
+
                         <div class="my-register-form">
                             <br><br><br><br>
                             <mat-form-field>
                                 <mat-label>Username</mat-label>
-                                <input 
+                                <input
                                 matInput
                                 ngModel
                                 name="loginUsername"
                                 required>
                             </mat-form-field>
-            
+
                             <mat-form-field>
                                 <mat-label>Password</mat-label>
-                                <input 
-                                matInput 
+                                <input
+                                matInput
                                 [type]="hidePassword ? 'password' : 'text'"
                                 ngModel
                                 name="loginPassword"
@@ -94,22 +94,23 @@
                             </mat-form-field>
                         </div>
                     </ng-template>
-                    
+
                 </div>
                 <div class="row text-center">
                     <p>
-                        You forgot you password ? 
+                        You forgot you password ?
                         <a>click here</a> to reset it | Or
                         <a *ngIf="mode==='register'" (click)="onAuthMe('login')"> login here</a>
                         <a *ngIf="mode==='login'" (click)="onAuthMe('register')"> Register here</a>
                     </p>
-                    
+
                 </div>
                 <div class="row text-center">
-                    <button 
-                        mat-raised-button 
+                    <button
+                        mat-raised-button
                         color="primary"
                         [disabled]="! myForm.valid"
+
                         >
                         Submit
                     </button>

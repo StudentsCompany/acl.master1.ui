@@ -9,7 +9,8 @@ export const aclUserReducer = createReducer(
     on(loadAclUserTokenSuccess, (state, {token}) => {
         return {
             ...state,
-            token : token
+            token : token,
+            userIsAuthenticated : true
         }
     }),
 

@@ -17,7 +17,7 @@ export class UIService {
 
     loggedIn = new BehaviorSubject<boolean>(false);
 
-    token : string | undefined = "";
+    token : string | undefined;
 
 
     dipacheAuthMode(mode : String){
