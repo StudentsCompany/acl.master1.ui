@@ -12,13 +12,11 @@ export class GameService {
 
   private ROOT = 'game1/game1Jeu';
 
-  private SAVE = this.ROOT + '/save'
+  private SAVE = this.ROOT + '/save';
 
-  private LOAD = this.ROOT + 'load'
+  private GAME_IN_PROGRESS = this.ROOT + '/progress';
 
-  constructor(private httpClient : HttpClient){
-
-  }
+  constructor(private httpClient : HttpClient){}
 
 
   getGameById(id : number){
@@ -38,6 +36,12 @@ export class GameService {
             `${environment.urls.apiRoot}${this.ROOT}`
         );
   }
+
+  getGameInProgressByAclUserId(aclUserId : number) {
+      return this.httpClient.get<GameDTO> (
+              `${environment.urls.apiRoot}${this.GAME_IN_PROGRESS}`
+          );
+    }
 
   postGame(gameDTO : GameDTO) {
     console.log("Post method")

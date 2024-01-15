@@ -1,7 +1,7 @@
 
 export class AclUserDTO{
 
-    idAclUser ?: number; // ? means the variable may be undefined
+    idAclUser !: number; // ? means the variable may be undefined
 
     username !: string; // ! means the variable may be absent
 

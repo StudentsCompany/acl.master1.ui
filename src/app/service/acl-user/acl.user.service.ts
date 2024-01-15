@@ -14,6 +14,7 @@ export class AclUserService {
     private REGISTER = this.ROOT + '/register'
     private GET_TOKEN = this.ROOT + '/token';
     private VALIDATE_TOKEN = this.ROOT + '/validateToken';
+    private USER_BY_TOKEN = this.ROOT + '/userByToken';
 
 
     constructor(private httpClient : HttpClient){
@@ -26,7 +27,13 @@ export class AclUserService {
         );
     }
 
-    getAclUserByUsername(username : string){ // TODO should ne created in the backend
+    getAclUserByToken(token : string){
+            return this.httpClient.get<AclUserDTO>(
+                `${environment.urls.apiRoot}${this.USER_BY_TOKEN}`
+            );
+        }
+
+    getAclUserByUsername(username : string){
         return this.httpClient.get<TokenDTO>(
             `${environment.urls.apiRoot}${this.ROOT}/${username.trim()}`
         );

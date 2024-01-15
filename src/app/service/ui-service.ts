@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Router, ActivatedRoute} from "@angular/router"
+import { AclUserDTO } from '../model/acl.user.model.dto';
+import { GameDTO } from '../model/game.model.dto';
 
 @Injectable({
     providedIn : 'root'
@@ -18,6 +20,10 @@ export class UIService {
     loggedIn = new BehaviorSubject<boolean>(false);
 
     token : string | undefined;
+
+    aclUser !: AclUserDTO;
+
+    game !: GameDTO;
 
 
     dipacheAuthMode(mode : String){

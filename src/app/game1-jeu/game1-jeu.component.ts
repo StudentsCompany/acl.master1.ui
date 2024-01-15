@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 import { loadAclUserSuccess, loadAclUserTokenSuccess, loadCardDTOsSuccess } from '../store/action/acl.user.action';
 import { Store } from '@ngrx/store';
 import { selectCards } from '../store/selector/acl.user.selector';
+import { AclUserService } from '../service/acl-user/acl.user.service'
+import { AclUserDTO } from '../model/acl.user.model.dto';
+
 
 @Component({
   selector: 'app-game1-jeu',
@@ -28,7 +31,9 @@ export class Game1JeuComponent implements OnInit {
 
   game !: GameDTO;
 
-  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, public gameService : GameService, private store : Store) {}
+  user !: AclUserDTO;
+
+  constructor(private uiService : UIService, private route: ActivatedRoute, public cardService : CardService, public gameService : GameService, private store : Store, private aclUserService : AclUserService) {}
 
   ngOnInit(): void {
     console.log("init");
@@ -37,12 +42,17 @@ export class Game1JeuComponent implements OnInit {
     this.drawnCardsCounter = 0;
     this.pairs = []
 
-    this.game = new GameDTO();
-    this.game.gameId = undefined;
-    this.uiService.nextGameId++;
-    this.game.playerId = 1; //TODO get player id
-    this.game.score = 0;
-    this.game.state = GameState.PROGRESS;
+    this.user = this.uiService.aclUser;
+
+//     if(this.uiService.game == undefined || this.uiService.game == null) {
+      this.game = new GameDTO();
+      this.game.gameId = undefined;
+      this.uiService.nextGameId++;
+      this.game.playerId = this.user.idAclUser;
+      this.game.score = 0;
+      this.game.state = GameState.PROGRESS;
+//     }
+
 
       /* this.cardtttt$.subscribe((result) => {
         console.log("--------------------------", result);
@@ -61,7 +71,7 @@ export class Game1JeuComponent implements OnInit {
         }
       }); */
 
-    if(this.cardService.cards != undefined){
+    if(this.cardService.cards != undefined) {
       this.cards = this.cardService.cards;
       this.game.pile = this.cards;
 
@@ -143,12 +153,15 @@ export class Game1JeuComponent implements OnInit {
         this.pairs[lineIndex][this.pairs[lineIndex].length -1].push(randomCard);
       }
       this.game.score += this.cardService.getScore(this.pairs[lineIndex][this.pairs[lineIndex].length -1]);
-      this.tour++;
 
-      console.log("score : ", this.game.score);
+      this.tour = (32 - this.game.pile.length)/2;
 
       this.drawnCardsCounter += amount;
     }
+    if(this.tour == 5) {
+      this.game.state = GameState.FINISHED;
+    }
+
     this.gameService.postGame(this.game).pipe(
       map((res) => {
         this.game.gameId = res.gameId;

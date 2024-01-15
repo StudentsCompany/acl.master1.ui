@@ -45,6 +45,7 @@ export class UserEffects{
                         map((result) => {
                             console.log("token recu : " + result.token);
                             this.uiService.token = result.token;
+
                             this.uiService.loggedIn.next(true);
                             this.uiService.navigateTo("../home/games", this.route)
                             loadAclUserTokenSuccess({token : result}); // Will store the result
